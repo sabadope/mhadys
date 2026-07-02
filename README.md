@@ -1,2 +1,0 @@
-# mhadys
-COMING SOON!
