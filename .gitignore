@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# Capacitor / Android build output (auto-generated, do not edit)
+android/app/src/main/assets/public/
+
 # production
 /build
 

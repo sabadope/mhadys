@@ -49,54 +49,54 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: oklch(0.98 0 0);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
+  --card: oklch(1 0 0 / 0.6);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(1 0 0 / 0.7);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.55 0.22 264);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
+  --secondary: oklch(0.96 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(0.96 0 0 / 0.6);
   --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
+  --accent: oklch(0.94 0 0 / 0.6);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
+  --border: oklch(0.922 0 0 / 0.5);
+  --input: oklch(0.922 0 0 / 0.5);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0 / 0.7);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent: oklch(0.97 0 0 / 0.6);
   --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-border: oklch(0.922 0 0 / 0.5);
   --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.12 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.18 0 0 / 0.5);
   --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.18 0 0 / 0.6);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
+  --primary: oklch(0.65 0.24 264);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.22 0 0);
   --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.22 0 0 / 0.6);
   --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
+  --accent: oklch(0.25 0 0 / 0.6);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
@@ -107,11 +107,11 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.18 0 0 / 0.7);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.25 0 0 / 0.6);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
@@ -121,10 +121,921 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   html {
-    @apply font-sans;
+    @apply font-sans h-full w-full;
   }
+
+  body {
+    @apply h-full w-full min-h-screen;
+  }
+}
+
+/* ============================================
+   LIQUID GLASS INTERFACE - Design System
+   ============================================
+
+   A pure liquid glass design system featuring:
+   - Frosted glass effects with backdrop-filter blur
+   - Animated gradient orbs for organic background movement
+   - Liquid gradient animations with multi-stop color flows
+   - Interactive effects: shimmer, ripple, reflection, wobble
+   - Morphing border-radius for organic shapes
+   - Droplet highlights for realistic glass accents
+   - Noise texture overlay for tactile glass grain
+   - Full dark/light mode support
+
+   USAGE:
+   - .glass              → Base frosted glass (transparent)
+   - .glass-card         → Elevated glass container
+   - .glass-nav          → Sticky navigation glass
+   - .glass-button       → Interactive glass button
+   - .glass-input        → Form field glass
+   - .glass-panel        → Large glass container
+   - .glass-chip         → Small tag/button glass
+   - .glass-liquid       → Pure intense liquid glass (recommended for hero)
+   - .glass-border-glow  → Gradient border glow effect
+   - .glass-reflection   → Light sweep on hover
+   - .glass-shimmer      → Shimmer animation on hover
+   - .glass-ripple       → Ripple expansion on hover
+   - .glass-wobble       → Subtle liquid movement
+   - .glass-morph        → Organic border morphing
+   - .glass-droplet      → Liquid droplet highlight
+   - .glass-text         → Gradient text effect
+   - .glass-orb-*        → Animated background orbs (1-6)
+   - .liquid-gradient    → Animated gradient background
+   - .noise-overlay      → Fixed noise texture overlay
+   - .animate-in         → Entrance animation
+   - .animate-in-delay-* → Entrance animation delays
+
+   All classes support .dark modifier for dark mode.
+   ============================================ */
+
+/* Noise texture overlay for realistic glass */
+@layer utilities {
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    mix-blend-mode: overlay;
+  }
+
+  .dark .noise-overlay {
+    opacity: 0.06;
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Glass Variants
+   ============================================ */
+@layer components {
+
+  /* Base glass - frosted effect (transparent background) */
+  .glass {
+    background: transparent;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .glass {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Pure liquid glass - intense, realistic glass effect */
+  .glass-liquid {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(40px) saturate(250%) contrast(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(250%) contrast(120%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.12),
+      0 8px 24px rgba(0, 0, 0, 0.08),
+      inset 0 2px 4px rgba(255, 255, 255, 0.4),
+      inset 0 -2px 4px rgba(255, 255, 255, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .glass-liquid {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.4),
+      0 8px 24px rgba(0, 0, 0, 0.2),
+      inset 0 2px 4px rgba(255, 255, 255, 0.15),
+      inset 0 -2px 4px rgba(255, 255, 255, 0.03),
+      0 0 0 1px rgba(255, 255, 255, 0.03);
+  }
+
+  .glass-liquid:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.18),
+      0 12px 32px rgba(0, 0, 0, 0.1),
+      inset 0 2px 4px rgba(255, 255, 255, 0.5),
+      inset 0 -2px 4px rgba(255, 255, 255, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.08);
+  }
+
+  .dark .glass-liquid:hover {
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.5),
+      0 12px 32px rgba(0, 0, 0, 0.3),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -2px 4px rgba(255, 255, 255, 0.05),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Liquid glass border glow */
+  .glass-border-glow {
+    position: relative;
+  }
+
+  .glass-border-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.3) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+  }
+
+  .dark .glass-border-glow::before {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.15) 100%);
+    opacity: 0.4;
+  }
+
+  .glass-border-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Liquid glass reflection */
+  .glass-reflection {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-reflection::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent);
+    transform: skewX(-15deg);
+    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-reflection:hover::after {
+    left: 150%;
+  }
+
+  .dark .glass-reflection::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.08),
+        transparent);
+  }
+
+  /* Glass card - elevated container */
+  .glass-card {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.75) 0%,
+        rgba(255, 255, 255, 0.45) 100%);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 1.25rem;
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.1),
+      0 4px 12px rgba(0, 0, 0, 0.05),
+      inset 0 2px 0 rgba(255, 255, 255, 0.6),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .glass-card {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.08) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 2px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.15),
+      0 8px 20px rgba(0, 0, 0, 0.08),
+      inset 0 2px 0 rgba(255, 255, 255, 0.7),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .glass-card:hover {
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.5),
+      0 8px 20px rgba(0, 0, 0, 0.3),
+      inset 0 2px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Glass nav - sticky navigation */
+  .glass-nav {
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.5) 100%);
+    backdrop-filter: blur(32px) saturate(200%);
+    -webkit-backdrop-filter: blur(32px) saturate(200%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .dark .glass-nav {
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 4px 24px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* Glass button - interactive element */
+  .glass-button {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.6) 100%);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .glass-button {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.7) 100%);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  .dark .glass-button:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0.15) 100%);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Glass input - form field */
+  .glass-input {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.7) 0%,
+        rgba(255, 255, 255, 0.4) 100%);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .glass-input {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-input:focus {
+    border-color: rgba(var(--color-primary), 0.5);
+    box-shadow:
+      0 0 0 3px rgba(var(--color-primary), 0.15),
+      0 4px 16px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .dark .glass-input:focus {
+    box-shadow:
+      0 0 0 3px rgba(var(--color-primary), 0.2),
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  /* Glass panel - large container */
+  .glass-panel {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.65) 0%,
+        rgba(255, 255, 255, 0.35) 100%);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.1),
+      0 6px 16px rgba(0, 0, 0, 0.06),
+      inset 0 2px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .glass-panel {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.06) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.4),
+      0 6px 16px rgba(0, 0, 0, 0.2),
+      inset 0 2px 0 rgba(255, 255, 255, 0.12),
+      inset 0 -2px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  /* Glass shimmer - light reflection effect */
+  .glass-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    transition: left 0.6s ease;
+  }
+
+  .glass-shimmer:hover::after {
+    left: 100%;
+  }
+
+  .dark .glass-shimmer::after {
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent);
+  }
+
+  /* Glass chip - suggestion/tag button */
+  .glass-chip {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.3) 100%);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark .glass-chip {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-chip:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.5) 100%);
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  .dark .glass-chip:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 100%);
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Animated Background Orbs
+   ============================================ */
+@layer utilities {
+  .glass-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+    pointer-events: none;
+    will-change: transform;
+    mix-blend-mode: screen;
+  }
+
+  .dark .glass-orb {
+    opacity: 0.35;
+    mix-blend-mode: screen;
+  }
+
+  .glass-orb-1 {
+    width: 700px;
+    height: 700px;
+    top: -250px;
+    right: -150px;
+    background: linear-gradient(135deg, #60a5fa, #a855f7, #ec4899);
+    animation: float-orb-1 20s ease-in-out infinite;
+  }
+
+  .glass-orb-2 {
+    width: 600px;
+    height: 600px;
+    bottom: -200px;
+    left: -150px;
+    background: linear-gradient(135deg, #c084fc, #ec4899, #f43f5e);
+    animation: float-orb-2 25s ease-in-out infinite;
+  }
+
+  .glass-orb-3 {
+    width: 500px;
+    height: 500px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #22d3ee, #3b82f6, #8b5cf6);
+    animation: float-orb-3 18s ease-in-out infinite;
+  }
+
+  .glass-orb-4 {
+    width: 450px;
+    height: 450px;
+    top: 60%;
+    right: 5%;
+    background: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
+    animation: float-orb-4 22s ease-in-out infinite;
+  }
+
+  .glass-orb-5 {
+    width: 400px;
+    height: 400px;
+    top: 10%;
+    left: 15%;
+    background: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899);
+    animation: float-orb-5 24s ease-in-out infinite;
+  }
+
+  .glass-orb-6 {
+    width: 350px;
+    height: 350px;
+    bottom: 20%;
+    right: 30%;
+    background: linear-gradient(135deg, #8b5cf6, #d946ef, #f43f5e);
+    animation: float-orb-6 19s ease-in-out infinite;
+  }
+}
+
+@keyframes float-orb-1 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(60px, -50px) scale(1.15) rotate(8deg);
+  }
+
+  50% {
+    transform: translate(-30px, 40px) scale(0.9) rotate(-5deg);
+  }
+
+  75% {
+    transform: translate(-40px, -30px) scale(1.1) rotate(3deg);
+  }
+}
+
+@keyframes float-orb-2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(-40px, 50px) scale(1.12) rotate(-6deg);
+  }
+
+  66% {
+    transform: translate(35px, -35px) scale(0.88) rotate(4deg);
+  }
+}
+
+@keyframes float-orb-3 {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-45%, -55%) scale(1.2) rotate(8deg);
+  }
+}
+
+@keyframes float-orb-4 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-50px, 40px) scale(1.15);
+  }
+}
+
+@keyframes float-orb-5 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(40px, 30px) scale(1.08);
+  }
+
+  66% {
+    transform: translate(-30px, -40px) scale(0.92);
+  }
+}
+
+@keyframes float-orb-6 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(30px, -30px) scale(1.1) rotate(-5deg);
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Liquid Gradient Animation
+   ============================================ */
+@layer utilities {
+  .liquid-gradient {
+    background: linear-gradient(-45deg,
+        #ee7752,
+        #e73c7e,
+        #23a6d5,
+        #23d5ab,
+        #f59e0b);
+    background-size: 400% 400%;
+    animation: liquid-gradient 12s ease infinite;
+  }
+
+  .dark .liquid-gradient {
+    background: linear-gradient(-45deg,
+        #7c3aed,
+        #db2777,
+        #2563eb,
+        #0891b2,
+        #10b981);
+    background-size: 400% 400%;
+  }
+}
+
+@keyframes liquid-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  25% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  75% {
+    background-position: 0% 100%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Wobble Animation
+   ============================================ */
+@layer utilities {
+  .glass-wobble {
+    animation: glass-wobble 6s ease-in-out infinite;
+  }
+
+  .glass-wobble-slow {
+    animation: glass-wobble 10s ease-in-out infinite;
+  }
+}
+
+@keyframes glass-wobble {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: translate(2px, -2px) rotate(0.5deg) scale(1.01);
+  }
+
+  50% {
+    transform: translate(-1px, 1px) rotate(-0.5deg) scale(0.99);
+  }
+
+  75% {
+    transform: translate(1px, 2px) rotate(0.3deg) scale(1.01);
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Ripple Effect
+   ============================================ */
+@layer utilities {
+  .glass-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass-ripple::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+  }
+
+  .glass-ripple:hover::before {
+    width: 300%;
+    height: 300%;
+  }
+
+  .dark .glass-ripple::before {
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.15) 0%,
+        transparent 70%);
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Morph Animation
+   ============================================ */
+@layer utilities {
+  .glass-morph {
+    animation: glass-morph 8s ease-in-out infinite;
+  }
+}
+
+@keyframes glass-morph {
+
+  0%,
+  100% {
+    border-radius: 1.5rem;
+  }
+
+  25% {
+    border-radius: 1.8rem 1.2rem 1.6rem 1.3rem;
+  }
+
+  50% {
+    border-radius: 1.3rem 1.7rem 1.2rem 1.8rem;
+  }
+
+  75% {
+    border-radius: 1.6rem 1.3rem 1.8rem 1.2rem;
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Droplet Effect
+   ============================================ */
+@layer utilities {
+  .glass-droplet {
+    position: relative;
+  }
+
+  .glass-droplet::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 12px;
+    height: 12px;
+    background: radial-gradient(circle at 30% 30%,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 70%);
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .glass-droplet:hover::after {
+    width: 16px;
+    height: 16px;
+    opacity: 1;
+  }
+
+  .dark .glass-droplet::after {
+    background: radial-gradient(circle at 30% 30%,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent 70%);
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Entrance Animations
+   ============================================ */
+@layer utilities {
+  .animate-in {
+    animation: animate-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-in-delay-1 {
+    animation-delay: 0.1s;
+  }
+
+  .animate-in-delay-2 {
+    animation-delay: 0.2s;
+  }
+
+  .animate-in-delay-3 {
+    animation-delay: 0.3s;
+  }
+
+  .animate-in-delay-4 {
+    animation-delay: 0.4s;
+  }
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================
+   LIQUID GLASS - Text Effects
+   ============================================ */
+@layer components {
+  .glass-text {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+
+  .dark .glass-text {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  }
+}
+
+/* ============================================
+   Smooth scroll behavior
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   Custom scrollbar for webkit browsers
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.7 0 0 / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.6 0 0 / 0.4);
 }
