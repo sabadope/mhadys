@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MhadysRouteImport } from './routes/mhadys'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppActivityRouteImport } from './routes/app.activity'
@@ -74,6 +75,11 @@ const AppRoute = AppRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MhadysRoute = MhadysRouteImport.update({
+  id: '/mhadys',
+  path: '/mhadys',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PricingRoute = PricingRouteImport.update({
@@ -330,6 +336,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/mhadys': typeof MhadysRoute
   '/pricing': typeof PricingRoute
   '/app/activity': typeof AppActivityRoute
   '/app/modules': typeof AppModulesRoute
@@ -382,6 +389,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/mhadys': typeof MhadysRoute
   '/pricing': typeof PricingRoute
   '/app/activity': typeof AppActivityRoute
   '/app/modules': typeof AppModulesRoute
@@ -436,6 +444,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/mhadys': typeof MhadysRoute
   '/pricing': typeof PricingRoute
   '/app/activity': typeof AppActivityRoute
   '/app/modules': typeof AppModulesRoute
@@ -491,6 +500,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/login'
+    | '/mhadys'
     | '/pricing'
     | '/app/activity'
     | '/app/modules'
@@ -543,6 +553,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
+    | '/mhadys'
     | '/pricing'
     | '/app/activity'
     | '/app/modules'
@@ -596,6 +607,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/login'
+    | '/mhadys'
     | '/pricing'
     | '/app/activity'
     | '/app/modules'
@@ -650,6 +662,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
+  MhadysRoute: typeof MhadysRoute
   PricingRoute: typeof PricingRoute
   BookEventIdRoute: typeof BookEventIdRoute
   StoreSlugRoute: typeof StoreSlugRoute
@@ -681,6 +694,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mhadys': {
+      id: '/mhadys'
+      path: '/mhadys'
+      fullPath: '/mhadys'
+      preLoaderRoute: typeof MhadysRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pricing': {
@@ -1114,6 +1134,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
+  MhadysRoute: MhadysRoute,
   PricingRoute: PricingRoute,
   BookEventIdRoute: BookEventIdRoute,
   StoreSlugRoute: StoreSlugRoute,
