@@ -6,10 +6,21 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-  },
-});
+// `npm run build:mobile` sets BUILD_TARGET=mobile → static SPA build for Capacitor (APK).
+const isMobile = process.env.BUILD_TARGET === "mobile";
+
+export default defineConfig(
+  isMobile
+    ? {
+        // No server, no Nitro: output is static files in dist/client for Capacitor.
+        nitro: false,
+        tanstackStart: { spa: { enabled: true } },
+      }
+    : {
+        tanstackStart: {
+          // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
+          // nitro/vite builds from this
+          server: { entry: "server" },
+        },
+      },
+);
