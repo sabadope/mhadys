@@ -27,9 +27,10 @@ function CameraRig({ rig, reduced }: { rig: Rig; reduced: boolean }) {
   return null;
 }
 
+const HTML_STYLE = { pointerEvents: "auto" as const };
 function Hotspot({ h, active, dim, onPick }: { h: HotspotDef; active: boolean; dim: boolean; onPick: (h: HotspotDef) => void }) {
   return (
-    <Html position={h.position} center zIndexRange={[20, 0]} style={{ pointerEvents: "auto" }}>
+    <Html position={h.position} center zIndexRange={[20, 0]} style={HTML_STYLE}>
       <button
         type="button"
         onClick={() => onPick(h)}

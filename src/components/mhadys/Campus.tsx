@@ -81,7 +81,7 @@ function Person({ c = 0, work = 0, phase = 0 }: { c?: number; work?: number; pha
   });
   return (
     <group ref={body} scale={0.9}>
-      <mesh geometry={G.capsule} material={SHIRTS[c % SHIRTS.length]} position={[0, 0.3, 0]} castShadow />
+      <mesh geometry={G.capsule} material={SHIRTS[c % SHIRTS.length]!} position={[0, 0.3, 0]} castShadow />
       <mesh geometry={G.sphere} material={SKIN} position={[0, 0.68, 0]} scale={0.22} castShadow />
     </group>
   );
@@ -92,10 +92,10 @@ const PAINT = ["#e8ecf4", "#c8323a", "#1d2a4a", "#2e7dd6", "#1a1c22", "#d9a23a"]
 function Car({ c = 0, scale = 1 }: { c?: number; scale?: number }) {
   return (
     <group scale={scale}>
-      <B p={[0, 0.35, 0]} s={[0.9, 0.35, 1.9]} m={PAINT[c % PAINT.length]} />
+      <B p={[0, 0.35, 0]} s={[0.9, 0.35, 1.9]} m={PAINT[c % PAINT.length]!} />
       <B p={[0, 0.65, -0.1]} s={[0.78, 0.3, 1.0]} m={M.glass} />
-      <B p={[0, 0.79, -0.1]} s={[0.76, 0.03, 0.95]} m={PAINT[c % PAINT.length]} />
-      {[[-0.45, 0.6], [0.45, 0.6], [-0.45, -0.6], [0.45, -0.6]].map(([x, z], i) => (
+      <B p={[0, 0.79, -0.1]} s={[0.76, 0.03, 0.95]} m={PAINT[c % PAINT.length]!} />
+      {([[-0.45, 0.6], [0.45, 0.6], [-0.45, -0.6], [0.45, -0.6]] as [number, number][]).map(([x, z], i) => (
         <mesh key={i} geometry={G.cyl} material={M.tire} position={[x, 0.18, z]} rotation={[0, 0, Math.PI / 2]} scale={[0.36, 0.14, 0.36]} />
       ))}
     </group>
@@ -108,7 +108,7 @@ function Truck() {
       <B p={[0, 0.72, -0.6]} s={[1.22, 0.25, 2.62]} m={M.blue} />
       <B p={[0, 0.55, 1.2]} s={[1.1, 0.9, 1]} m={M.blue} />
       <B p={[0, 0.75, 1.71]} s={[0.9, 0.35, 0.02]} m={M.glass} />
-      {[[-0.6, 1.2], [0.6, 1.2], [-0.6, -1.4], [0.6, -1.4]].map(([x, z], i) => (
+      {([[-0.6, 1.2], [0.6, 1.2], [-0.6, -1.4], [0.6, -1.4]] as [number, number][]).map(([x, z], i) => (
         <mesh key={i} geometry={G.cyl} material={M.tire} position={[x, 0.2, z]} rotation={[0, 0, Math.PI / 2]} scale={[0.4, 0.16, 0.4]} />
       ))}
     </group>
@@ -415,7 +415,7 @@ function MerchandiseEnvironment({ lite }: { lite: boolean }) {
       <group position={[3.5, 0.4, -0.8]}>
         <B p={[0, 0.5, 0]} s={[2.6, 1, 1]} m={M.white} />
         {[-0.8, 0, 0.8].map((dx, i) => (
-          <B key={dx} p={[dx, 1.25, 0]} s={[0.6, 0.5, 0.6]} m={[M.indigo, M.teal, M.blue][i]} />
+          <B key={dx} p={[dx, 1.25, 0]} s={[0.6, 0.5, 0.6]} m={[M.indigo, M.teal, M.blue][i]!} />
         ))}
       </group>
       <Mover points={[[-6, 0.4, 0.2], [2, 0.4, 0.2]]} speed={1.2} pingpong>
