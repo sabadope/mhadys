@@ -59,7 +59,7 @@ export function MhadysHero() {
     };
   }, []);
 
-  const baseDist = mobile ? 44 : 34;
+  const baseDist = mobile ? 50 : 40;
 
   // Fly the camera whenever focus changes.
   const focusService = useCallback(
