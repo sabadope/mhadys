@@ -44,5 +44,5 @@ export const MANUAL_PAUSE_MS = 8000;
 /** Pure autoplay rule: next service in the cycle. */
 export function nextService(id: ServiceId): ServiceId {
   const i = SERVICES.findIndex((s) => s.id === id);
-  return SERVICES[(i + 1) % SERVICES.length].id;
+  return SERVICES[(i + 1) % SERVICES.length]!.id;
 }
