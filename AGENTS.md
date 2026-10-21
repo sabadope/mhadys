@@ -8,4 +8,4 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
-- The MhadysEvents 3D hero lives at /mhadys (src/components/mhadys, client-only route); camera moves via a mutable rig read in useFrame so UI state never updates per frame.
+- The MhadysEvents 3D hero lives at / (home page; src/components/mhadys, client-only route); camera moves via a mutable rig read in useFrame so UI state never updates per frame.

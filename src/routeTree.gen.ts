@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MhadysRouteImport } from './routes/mhadys'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppActivityRouteImport } from './routes/app.activity'
 import { Route as AppModulesRouteImport } from './routes/app.modules'
@@ -85,6 +86,11 @@ const MhadysRoute = MhadysRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WelcomeRoute = WelcomeRouteImport.update({
+  id: '/welcome',
+  path: '/welcome',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
@@ -338,6 +344,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/mhadys': typeof MhadysRoute
   '/pricing': typeof PricingRoute
+  '/welcome': typeof WelcomeRoute
   '/app/activity': typeof AppActivityRoute
   '/app/modules': typeof AppModulesRoute
   '/app/notifications': typeof AppNotificationsRoute
@@ -391,6 +398,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/mhadys': typeof MhadysRoute
   '/pricing': typeof PricingRoute
+  '/welcome': typeof WelcomeRoute
   '/app/activity': typeof AppActivityRoute
   '/app/modules': typeof AppModulesRoute
   '/app/notifications': typeof AppNotificationsRoute
@@ -446,6 +454,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/mhadys': typeof MhadysRoute
   '/pricing': typeof PricingRoute
+  '/welcome': typeof WelcomeRoute
   '/app/activity': typeof AppActivityRoute
   '/app/modules': typeof AppModulesRoute
   '/app/notifications': typeof AppNotificationsRoute
@@ -502,6 +511,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mhadys'
     | '/pricing'
+    | '/welcome'
     | '/app/activity'
     | '/app/modules'
     | '/app/notifications'
@@ -555,6 +565,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mhadys'
     | '/pricing'
+    | '/welcome'
     | '/app/activity'
     | '/app/modules'
     | '/app/notifications'
@@ -609,6 +620,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/mhadys'
     | '/pricing'
+    | '/welcome'
     | '/app/activity'
     | '/app/modules'
     | '/app/notifications'
@@ -664,6 +676,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MhadysRoute: typeof MhadysRoute
   PricingRoute: typeof PricingRoute
+  WelcomeRoute: typeof WelcomeRoute
   BookEventIdRoute: typeof BookEventIdRoute
   StoreSlugRoute: typeof StoreSlugRoute
   StoreCartRoute: typeof StoreCartRoute
@@ -708,6 +721,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/welcome': {
+      id: '/welcome'
+      path: '/welcome'
+      fullPath: '/welcome'
+      preLoaderRoute: typeof WelcomeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/': {
@@ -1136,6 +1156,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MhadysRoute: MhadysRoute,
   PricingRoute: PricingRoute,
+  WelcomeRoute: WelcomeRoute,
   BookEventIdRoute: BookEventIdRoute,
   StoreSlugRoute: StoreSlugRoute,
   StoreCartRoute: StoreCartRoute,
