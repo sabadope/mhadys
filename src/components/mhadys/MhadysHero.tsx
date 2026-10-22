@@ -331,7 +331,7 @@ function SceneLoading() {
   return (
     <div className="grid h-full place-items-center bg-background">
       <div className="flex items-center gap-3 text-sm text-muted-foreground">
-        <span className="size-2 animate-pulse rounded-full bg-module" /> Building the campus…
+        <span className="size-2 animate-pulse rounded-full bg-module" /> Preparing the estate…
       </div>
     </div>
   );
