@@ -66,15 +66,16 @@ export function SceneCanvas({ rig, service, activeHotspot, onPickHotspot, onUser
   const ctrl = useRef<OrbitControlsImpl>(null);
   return (
     <Canvas shadows={!lite} dpr={[1, lite ? 1.5 : 2]} camera={{ position: [10, 30, 30], fov: 32, near: 0.5, far: 300 }} gl={{ antialias: true }}>
-      <color attach="background" args={["#0a1022"]} />
-      <fog attach="fog" args={["#0a1022", 60, 140]} />
-      <hemisphereLight args={["#cfe0ff", "#1a2240", 0.9]} />
-      <directionalLight position={[20, 35, 18]} intensity={2.2} color="#fff4e6" castShadow={!lite} shadow-mapSize={[2048, 2048]} shadow-camera-left={-45} shadow-camera-right={45} shadow-camera-top={25} shadow-camera-bottom={-25} shadow-bias={-0.0005} />
-      <directionalLight position={[-25, 12, -10]} intensity={0.6} color="#8a9cff" />
+      <color attach="background" args={["#0e1830"]} />
+      <fog attach="fog" args={["#0e1830", 60, 140]} />
+      <hemisphereLight args={["#9db1e0", "#2e2a24", 0.62]} />
+      <directionalLight position={[24, 32, 20]} intensity={2.4} color="#ffdcb0" castShadow={!lite} shadow-mapSize={[2048, 2048]} shadow-camera-left={-45} shadow-camera-right={45} shadow-camera-top={25} shadow-camera-bottom={-25} shadow-bias={-0.0005} />
+      <directionalLight position={[-30, 10, 26]} intensity={0.7} color="#ff9e66" />
+      <directionalLight position={[-25, 12, -10]} intensity={0.5} color="#8a9cff" />
       <Environment resolution={128}>
-        <Lightformer intensity={2} position={[0, 10, 0]} rotation-x={Math.PI / 2} scale={[30, 30, 1]} />
-        <Lightformer intensity={1.2} color="#8aa0ff" position={[-10, 3, 10]} scale={[30, 3, 1]} />
-        <Lightformer intensity={0.8} color="#7fe6d4" position={[10, 3, -10]} scale={[30, 3, 1]} />
+        <Lightformer intensity={2} color="#fff2df" position={[0, 10, 0]} rotation-x={Math.PI / 2} scale={[30, 30, 1]} />
+        <Lightformer intensity={1.3} color="#ffbe8a" position={[-10, 3, 10]} scale={[30, 3, 1]} />
+        <Lightformer intensity={0.7} color="#7f95c9" position={[10, 3, -10]} scale={[30, 3, 1]} />
       </Environment>
       <Suspense fallback={null}>
         <Campus lite={lite} />
