@@ -58,7 +58,7 @@ const G = {
 const HIP = (() => {
   const b = 0.5;
   const t = 0.15;
-  const v = [
+  const v: [number, number, number][] = [
     [-b, 0, -b], [b, 0, -b], [b, 0, b], [-b, 0, b],
     [-t, 1, -t], [t, 1, -t], [t, 1, t], [-t, 1, t],
   ];
@@ -378,7 +378,7 @@ function Ground({ lite }: { lite: boolean }) {
       <Fountain p={[-25, 0.03, 8.5]} />
       {!lite && (
         <>
-          {[[-33, 0.36, 7.4], [-17, 0.36, 7.4], [-33, 0.36, 9.8], [-17, 0.36, 9.8]].map(([x, y, z], i) => (
+          {([[-33, 0.36, 7.4], [-17, 0.36, 7.4], [-33, 0.36, 9.8], [-17, 0.36, 9.8]] as [number, number, number][]).map(([x, y, z], i) => (
             <mesh key={i} geometry={G.cyl} material={M.bronzeDark} position={[x, y + 1.2, z]} scale={[0.07, 2.4, 0.07]} />
           ))}
           <StringLights y={2.7} x0={-33} x1={-17} z={7.4} />
@@ -404,13 +404,13 @@ function Ground({ lite }: { lite: boolean }) {
       <Topiary p={[-5.6, 0.36, 8.15]} />
       <Topiary p={[5.6, 0.36, 8.15]} />
       {/* estate lighting */}
-      {[[11, 10.1], [-11, 10.1], [6, 8.3], [-6, 8.3]].map(([x, z], i) => (
+      {([[11, 10.1], [-11, 10.1], [6, 8.3], [-6, 8.3]] as [number, number][]).map(([x, z], i) => (
         <Lamp key={i} p={[x, i > 1 ? 0.36 : 0, z]} />
       ))}
       {lite
         ? [-24, 0, 24].map((x) => <Lamp key={x} p={[x, 0, 11.3]} />)
         : [-36, -24, -12, 0, 12, 24, 36].map((x) => <Lamp key={x} p={[x, 0, 11.3]} />)}
-      {[[16.5, 10.6], [24, 10.6], [31.5, 10.6], [-22, 7.2], [-28, 7.2]].map(([x, z], i) => (
+      {([[16.5, 10.6], [24, 10.6], [31.5, 10.6], [-22, 7.2], [-28, 7.2]] as [number, number][]).map(([x, z], i) => (
         <Lamp key={i} p={[x, 0, z]} s={0.85} />
       ))}
       {/* trees */}
@@ -816,7 +816,7 @@ function AutoCareEnvironment({ lite }: { lite: boolean }) {
       {/* detailing bays pavilion (back right) */}
       <B p={[27.5, 2.2, -5.2]} s={[9, 4, 0.25]} m={M.stone} />
       <B p={[31.9, 2.2, -2.6]} s={[0.25, 4, 5.4]} m={M.stone} />
-      {(!lite ? [[25.5, -5.36], [29.5, -5.36], [32.05, -3.8], [32.05, -1.4]] : [[27.5, -5.36]]).map(([wx, wz], i) => (
+      {((!lite ? [[25.5, -5.36], [29.5, -5.36], [32.05, -3.8], [32.05, -1.4]] : [[27.5, -5.36]]) as [number, number][]).map(([wx, wz], i) => (
         <Win key={i} p={[wx, 2.2, wz]} w={1.5} h={2} axis={wz === -5.36 ? "z" : "x"} />
       ))}
       <B p={[27.5, 4.32, 0.15]} s={[9.4, 0.22, 0.4]} m={M.trim} />
