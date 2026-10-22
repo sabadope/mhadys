@@ -20,7 +20,7 @@ const M = {
   hedge: new THREE.MeshStandardMaterial({ color: "#24483a", roughness: 1 }),
   soil: new THREE.MeshStandardMaterial({ color: "#3a2c22", roughness: 1 }),
   redcarpet: new THREE.MeshStandardMaterial({ color: "#7c2f3e", roughness: 0.9 }),
-  glassRoof: new THREE.MeshStandardMaterial({ color: "#bcd2ff", roughness: 0.05, metalness: 0.2, transparent: true, opacity: 0.22, depthWrite: false }),
+  glassRoof: new THREE.MeshStandardMaterial({ color: "#9cc4ff", roughness: 0.35, metalness: 0.1, transparent: true, opacity: 0.3, depthWrite: false }),
   // interior / service palette (preserved)
   white: new THREE.MeshStandardMaterial({ color: "#eef1f7", roughness: 0.55 }),
   cool: new THREE.MeshStandardMaterial({ color: "#c7cedd", roughness: 0.6 }),
@@ -288,10 +288,10 @@ function makeLawnTexture() {
   const c = document.createElement("canvas");
   c.width = c.height = 128;
   const ctx = c.getContext("2d")!;
-  ctx.fillStyle = "#2c523f";
+  ctx.fillStyle = "#25473a";
   ctx.fillRect(0, 0, 128, 128);
   for (let i = 0; i < 260; i++) {
-    ctx.fillStyle = Math.random() > 0.5 ? "#274a38" : "#38684e";
+    ctx.fillStyle = Math.random() > 0.5 ? "#203d32" : "#2c5343";
     ctx.fillRect(Math.random() * 128, Math.random() * 128, 2, 2);
   }
   const t = new THREE.CanvasTexture(c);
