@@ -20,7 +20,7 @@ const M = {
   hedge: new THREE.MeshStandardMaterial({ color: "#24483a", roughness: 1 }),
   soil: new THREE.MeshStandardMaterial({ color: "#3a2c22", roughness: 1 }),
   redcarpet: new THREE.MeshStandardMaterial({ color: "#7c2f3e", roughness: 0.9 }),
-  glassRoof: new THREE.MeshStandardMaterial({ color: "#9cc4ff", roughness: 0.35, metalness: 0.1, transparent: true, opacity: 0.3, depthWrite: false }),
+  glassRoof: new THREE.MeshStandardMaterial({ color: "#7d95c0", roughness: 0.6, metalness: 0, transparent: true, opacity: 0.55, depthWrite: false }),
   // interior / service palette (preserved)
   white: new THREE.MeshStandardMaterial({ color: "#eef1f7", roughness: 0.55 }),
   cool: new THREE.MeshStandardMaterial({ color: "#c7cedd", roughness: 0.6 }),
@@ -704,6 +704,7 @@ function MerchandiseEnvironment({ lite }: { lite: boolean }) {
       {/* glazed mansard-style atrium roof over the rear half */}
       <B p={[0, 5.9, -2.4]} s={[16.8, 0.15, 6.5]} m={M.bronze} />
       <mesh geometry={HIP} material={M.glassRoof} position={[0, 5.95, -2.4]} scale={[16.4, 1.7, 6.3]} />
+      <B p={[0, 7.62, -2.4]} s={[15.6, 0.12, 0.3]} m={M.bronze} />
       <B p={[0, 5.78, 5.3]} s={[16.4, 0.25, 0.5]} m={M.trim} />
       <B p={[0, 5.66, 4.9]} s={[15.6, 0.06, 0.5]} m={M.glow} />
       <Racks lite={lite} />
