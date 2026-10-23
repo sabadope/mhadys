@@ -20,7 +20,7 @@ const M = {
   hedge: new THREE.MeshStandardMaterial({ color: "#24483a", roughness: 1 }),
   soil: new THREE.MeshStandardMaterial({ color: "#3a2c22", roughness: 1 }),
   redcarpet: new THREE.MeshStandardMaterial({ color: "#7c2f3e", roughness: 0.9 }),
-  glassRoof: new THREE.MeshStandardMaterial({ color: "#9cc4ff", roughness: 0.35, metalness: 0.1, transparent: true, opacity: 0.3, depthWrite: false }),
+  glassRoof: new THREE.MeshStandardMaterial({ color: "#aecdff", roughness: 0.5, metalness: 0, transparent: true, opacity: 0.15, depthWrite: false }),
   // interior / service palette (preserved)
   white: new THREE.MeshStandardMaterial({ color: "#eef1f7", roughness: 0.55 }),
   cool: new THREE.MeshStandardMaterial({ color: "#c7cedd", roughness: 0.6 }),
